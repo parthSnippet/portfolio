@@ -23,42 +23,6 @@ export default function Hero() {
     >
       <div className="flex flex-col items-center gap-8 md:flex-row md:justify-between">
 
-        {/* Image — top on mobile, right on desktop */}
-        <motion.div
-          variants={item}
-          className="relative flex shrink-0 items-center justify-center"
-        >
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
-            className="absolute h-48 w-48 rounded-full bg-gradient-to-tr from-sky-400 via-fuchsia-400 to-pink-400 p-[3px] sm:h-56 sm:w-56 md:h-64 md:w-64"
-          >
-            <div className="h-full w-full rounded-full bg-slate-50 dark:bg-slate-950" />
-          </motion.div>
-
-          <motion.div
-            animate={{ scale: [1, 1.08, 1], opacity: [0.4, 0.15, 0.4] }}
-            transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-            className="absolute h-48 w-48 rounded-full bg-fuchsia-500/30 blur-2xl sm:h-56 sm:w-56 md:h-64 md:w-64"
-          />
-
-          <motion.img
-            src={heroImg}
-            alt={portfolioData.name}
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-            className="relative z-10 h-40 w-40 rounded-full object-cover shadow-2xl ring-4 ring-white/60 dark:ring-slate-800/60 sm:h-48 sm:w-48 md:h-60 md:w-60"
-          />
-
-          <motion.div
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-            className="absolute -bottom-4 left-1/2 z-20 -translate-x-1/2 whitespace-nowrap rounded-full border border-slate-200/60 bg-white/90 px-3 py-1 text-xs font-semibold shadow-lg backdrop-blur dark:border-slate-700 dark:bg-slate-900/90"
-          >
-            ✨ {portfolioData.role}
-          </motion.div>
-        </motion.div>
-
         {/* Text side */}
         <div className="flex-1 text-center md:text-left">
           <motion.h1
@@ -95,6 +59,42 @@ export default function Hero() {
             </a>
           </motion.div>
         </div>
+
+        {/* Image — top on mobile, right on desktop */}
+        <motion.div
+          variants={item}
+          className="relative flex shrink-0 items-center justify-center"
+        >
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+            className="absolute h-48 w-48 rounded-full bg-gradient-to-tr from-sky-400 via-fuchsia-400 to-pink-400 p-[3px] sm:h-56 sm:w-56 md:h-64 md:w-64"
+          >
+            <div className="h-full w-full rounded-full bg-slate-50 dark:bg-slate-950" />
+          </motion.div>
+
+          <motion.div
+            animate={{ scale: [1, 1.08, 1], opacity: [0.4, 0.15, 0.4] }}
+            transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+            className="absolute h-48 w-48 rounded-full bg-fuchsia-500/30 blur-2xl sm:h-56 sm:w-56 md:h-64 md:w-64"
+          />
+
+          <motion.img
+            src={heroImg}
+            alt={portfolioData.name}
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: 'spring', stiffness: 200, damping: 15 }}
+            className="relative z-10 h-40 w-40 rounded-full object-cover shadow-2xl ring-4 ring-white/60 dark:ring-slate-800/60 sm:h-48 sm:w-48 md:h-60 md:w-60"
+          />
+
+          <motion.div
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+            className="absolute -bottom-4 left-1/2 z-20 -translate-x-1/2 whitespace-nowrap rounded-full border border-slate-200/60 bg-white/90 px-3 py-1 text-xs font-semibold shadow-lg backdrop-blur dark:border-slate-700 dark:bg-slate-900/90"
+          >
+            ✨ {portfolioData.role}
+          </motion.div>
+        </motion.div>
 
       </div>
     </motion.section>
