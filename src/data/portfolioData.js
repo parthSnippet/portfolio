@@ -4,7 +4,7 @@ export const portfolioData = {
   tagline: 'I design and build modern, responsive web experiences.',
   about:
     'Passionate frontend developer with a strong focus on React, clean UI architecture, and API-driven applications.',
-  location: 'India',
+  location: 'Gujrat , India',
   email: 'parthatwork24@gmail.com',
   social: {
     github: 'https://github.com/parthSnippet',
