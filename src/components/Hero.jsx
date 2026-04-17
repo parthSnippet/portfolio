@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
-import { FaGithub, FaLinkedin } from 'react-icons/fa'
-import { portfolioData } from '../data/portfolioData'
-import heroImg from '../assets/12.png'
+import { FaGithub, FaLinkedin, FaReact, FaNodeJs, FaPython, FaDatabase } from 'react-icons/fa'
+import { SiTailwindcss, SiJavascript, SiMongodb } from 'react-icons/si'
+import { portfolioData as fallbackData } from '../data/portfolioData'
 
 const container = {
   hidden: {},
@@ -13,22 +13,63 @@ const item = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
 }
 
-export default function Hero() {
+const techIcons = [
+  { Icon: SiJavascript, color: 'text-yellow-400', position: 'top-16 right-12', delay: 0.2 },
+  { Icon: FaNodeJs, color: 'text-green-500', position: 'bottom-20 left-16', delay: 0.4 },
+  { Icon: SiTailwindcss, color: 'text-sky-400', position: 'bottom-12 right-8', delay: 0.6 },
+  { Icon: FaPython, color: 'text-blue-500', position: 'top-32 left-24', delay: 0.3 },
+  { Icon: SiMongodb, color: 'text-emerald-500', position: 'top-24 right-24', delay: 0.5 },
+]
+
+export default function Hero({ portfolioData: data }) {
+  const portfolioData = data || fallbackData
   return (
     <motion.section
       variants={container}
       initial="hidden"
       animate="visible"
-      className="mb-16 rounded-3xl border border-slate-200/60 bg-white/70 p-6 shadow-xl shadow-slate-200/40 backdrop-blur dark:border-slate-800 dark:bg-slate-900/70 dark:shadow-black/20 md:p-10"
+      className="relative mb-16 overflow-hidden rounded-3xl border border-indigo-200/80 bg-white/90 p-6 shadow-2xl shadow-indigo-200/50 backdrop-blur dark:border-slate-800 dark:bg-slate-900/70 dark:shadow-black/20 md:p-10"
     >
+      {/* Floating tech icons */}
+      {techIcons.map(({ Icon, color, position, delay }, i) => (
+        <motion.div
+          key={i}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ 
+            opacity: [0.3, 0.6, 0.3],
+            scale: 1,
+            y: [0, -15, 0],
+          }}
+          transition={{
+            opacity: { duration: 3, repeat: Infinity, delay },
+            y: { duration: 4 + i * 0.5, repeat: Infinity, ease: 'easeInOut', delay },
+            scale: { duration: 0.5, delay: delay + 0.2 }
+          }}
+          whileHover={{ 
+            scale: 2, 
+            rotate: 360,
+            opacity: 1,
+            zIndex: 50,
+            transition: { duration: 0.4 }
+          }}
+          className={`absolute ${position} hidden md:block`}
+        >
+          <Icon className={`${color} text-3xl drop-shadow-lg`} />
+        </motion.div>
+      ))}
+
       <div className="flex flex-col items-center gap-8 md:flex-row md:justify-between">
 
         {/* Text side */}
-        <div className="flex-1 text-center md:text-left">
+        <div className="relative z-10 flex-1 text-center md:text-left">
           <motion.h1
             variants={item}
-            className="mb-3 bg-gradient-to-r from-sky-400 via-fuchsia-400 to-pink-400 bg-clip-text text-3xl font-bold tracking-tight text-transparent sm:text-4xl md:text-6xl"
-          >
+            whileHover={{ 
+              backgroundPosition: ['0% 50%', '100% 50%'],
+              transition: { duration: 0.8, ease: 'easeInOut' }
+            }}
+            style={{ backgroundSize: '200% 200%' }}
+            className="mb-3 cursor-default bg-gradient-to-r from-sky-400 via-fuchsia-400 to-pink-400 bg-clip-text text-3xl font-bold tracking-tight text-transparent sm:text-4xl md:text-6xl">
             {portfolioData.name}
           </motion.h1>
 
@@ -59,42 +100,6 @@ export default function Hero() {
             </a>
           </motion.div>
         </div>
-
-        {/* Image — top on mobile, right on desktop */}
-        <motion.div
-          variants={item}
-          className="relative flex shrink-0 items-center justify-center"
-        >
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
-            className="absolute h-48 w-48 rounded-full bg-gradient-to-tr from-sky-400 via-fuchsia-400 to-pink-400 p-[3px] sm:h-56 sm:w-56 md:h-64 md:w-64"
-          >
-            <div className="h-full w-full rounded-full bg-slate-50 dark:bg-slate-950" />
-          </motion.div>
-
-          <motion.div
-            animate={{ scale: [1, 1.08, 1], opacity: [0.4, 0.15, 0.4] }}
-            transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-            className="absolute h-48 w-48 rounded-full bg-fuchsia-500/30 blur-2xl sm:h-56 sm:w-56 md:h-64 md:w-64"
-          />
-
-          <motion.img
-            src={heroImg}
-            alt={portfolioData.name}
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-            className="relative z-10 h-40 w-40 rounded-full object-cover shadow-2xl ring-4 ring-white/60 dark:ring-slate-800/60 sm:h-48 sm:w-48 md:h-60 md:w-60"
-          />
-
-          <motion.div
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-            className="absolute -bottom-4 left-1/2 z-20 -translate-x-1/2 whitespace-nowrap rounded-full border border-slate-200/60 bg-white/90 px-3 py-1 text-xs font-semibold shadow-lg backdrop-blur dark:border-slate-700 dark:bg-slate-900/90"
-          >
-            ✨ {portfolioData.role}
-          </motion.div>
-        </motion.div>
 
       </div>
     </motion.section>

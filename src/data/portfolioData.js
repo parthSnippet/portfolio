@@ -1,11 +1,12 @@
 export const portfolioData = {
-  name: 'Parth ',
+  name: 'Parth Rohit',
   role: 'Frontend Developer',
   tagline: 'I design and build modern, responsive web experiences.',
   about:
     'Passionate frontend developer with a strong focus on React, clean UI architecture, and API-driven applications.',
   location: 'Gujrat , India',
   email: 'parthatwork24@gmail.com',
+  resume: '/resume_parth.pdf',
   social: {
     github: 'https://github.com/parthSnippet',
     linkedin: 'https://www.linkedin.com/in/parth-rohit-b65910307',

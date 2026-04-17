@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { Mail, MapPin, Send } from 'lucide-react'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
-import { portfolioData } from '../data/portfolioData'
+import { portfolioData as fallbackData } from '../data/portfolioData'
 
 const container = {
   hidden: {},
@@ -13,7 +13,10 @@ const item = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
 }
 
-const infoCards = [
+export default function Contact({ portfolioData: data }) {
+  const portfolioData = data || fallbackData
+  
+  const infoCards = [
   {
     icon: <Mail size={20} />,
     label: 'Email',
@@ -47,15 +50,13 @@ const infoCards = [
     bg: 'bg-orange-500/10',
   },
 ]
-
-export default function Contact() {
   return (
     <motion.section
       variants={container}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.1 }}
-      className="mb-8 rounded-3xl border border-slate-200/70 bg-white/70 p-8 shadow-xl shadow-slate-200/40 backdrop-blur dark:border-slate-800 dark:bg-slate-900/70 dark:shadow-black/20 md:p-10"
+      className="mb-8 rounded-3xl border border-indigo-200/80 bg-white/90 p-8 shadow-2xl shadow-indigo-100/50 backdrop-blur dark:border-slate-800 dark:bg-slate-900/70 dark:shadow-black/20 md:p-10"
     >
       {/* Heading */}
       <motion.div variants={item} className="mb-8 text-center">
@@ -82,7 +83,7 @@ export default function Contact() {
                 {card.icon}
               </div>
               <div>
-                <p className="text-xs text-slate-400">{card.label}</p>
+                <p className="text-xs font-medium text-slate-500 dark:text-slate-400">{card.label}</p>
                 {card.href ? (
                   <a
                     href={card.href}
@@ -93,7 +94,7 @@ export default function Contact() {
                     {card.value}
                   </a>
                 ) : (
-                  <p className="text-sm font-semibold text-slate-700 dark:text-slate-200">
+                  <p className="text-sm font-semibold text-slate-800 dark:text-slate-200">
                     {card.value}
                   </p>
                 )}
@@ -110,7 +111,7 @@ export default function Contact() {
         >
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="flex flex-col gap-1">
-              <label className="text-xs font-medium text-slate-500 dark:text-slate-400">Name</label>
+              <label className="text-xs font-medium text-slate-600 dark:text-slate-400">Name</label>
               <input
                 type="text"
                 placeholder="Your name"
@@ -118,7 +119,7 @@ export default function Contact() {
               />
             </div>
             <div className="flex flex-col gap-1">
-              <label className="text-xs font-medium text-slate-500 dark:text-slate-400">Email</label>
+              <label className="text-xs font-medium text-slate-600 dark:text-slate-400">Email</label>
               <input
                 type="email"
                 placeholder="your@email.com"
@@ -128,7 +129,7 @@ export default function Contact() {
           </div>
 
           <div className="flex flex-col gap-1">
-            <label className="text-xs font-medium text-slate-500 dark:text-slate-400">Subject</label>
+            <label className="text-xs font-medium text-slate-600 dark:text-slate-400">Subject</label>
             <input
               type="text"
               placeholder="What's this about?"
@@ -137,7 +138,7 @@ export default function Contact() {
           </div>
 
           <div className="flex flex-col gap-1">
-            <label className="text-xs font-medium text-slate-500 dark:text-slate-400">Message</label>
+            <label className="text-xs font-medium text-slate-600 dark:text-slate-400">Message</label>
             <textarea
               rows={5}
               placeholder="Write your message..."

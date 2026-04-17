@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
-import { portfolioData } from '../data/portfolioData'
+import { portfolioData as fallbackData } from '../data/portfolioData'
 
 const container = {
   hidden: {},
@@ -12,9 +12,16 @@ const card = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: 'easeOut' } },
 }
 
-export default function Projects() {
+export default function Projects({ portfolioData: data }) {
+  const portfolioData = data || fallbackData
   return (
-    <section className="mb-16">
+    <motion.section 
+      initial={{ opacity: 0, x: 50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+      className="mb-16"
+    >
       <h2 className="mb-6 text-2xl font-semibold">Featured Projects</h2>
       <motion.div
         className="grid gap-5 md:grid-cols-2"
@@ -28,7 +35,7 @@ export default function Projects() {
             variants={card}
             whileHover={{ y: -10, scale: 1.02 }}
             transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-            className="group relative overflow-hidden rounded-3xl border border-slate-200/70 bg-white/75 p-6 shadow-lg shadow-slate-200/40 backdrop-blur dark:border-slate-800 dark:bg-slate-900/70 dark:shadow-black/20"
+            className="group relative overflow-hidden rounded-3xl border border-indigo-200/80 bg-white/90 p-6 shadow-xl shadow-indigo-100/50 backdrop-blur dark:border-slate-800 dark:bg-slate-900/70 dark:shadow-black/20"
           >
             <div className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 ring-2 ring-sky-400/50 transition-opacity duration-300 group-hover:opacity-100" />
 
@@ -57,6 +64,6 @@ export default function Projects() {
           </motion.article>
         ))}
       </motion.div>
-    </section>
+    </motion.section>
   )
 }
