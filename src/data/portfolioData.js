@@ -1,5 +1,5 @@
 export const portfolioData = {
-  name: 'Parth Rohit',
+  name: 'Parth ',
   role: 'Frontend Developer',
   tagline: 'I design and build modern, responsive web experiences.',
   about:
