@@ -64,7 +64,7 @@ export default function Contact({ portfolioData: data }) {
           Get in Touch
         </h2>
         <p className="text-sm text-slate-500 dark:text-slate-400">
-          Have a project in mind ?
+          Have a project in mind , Let's turn your thoughts into development.
         </p>
       </motion.div>
 
