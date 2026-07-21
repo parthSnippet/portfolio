@@ -2,7 +2,7 @@ const API_URL = 'http://localhost:5000/api'
 
 export const fetchPortfolioData = async () => {
   try {
-    const response = await fetch(`${API_URL}/portfolio`)
+    const response = await fetch(`${API_URL}/portfolio/main`)
     if (!response.ok) throw new Error('Failed to fetch')
     return await response.json()
   } catch (error) {

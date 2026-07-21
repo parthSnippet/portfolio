@@ -22,7 +22,7 @@ export default function CustomCursor({ dark }) {
       // Add trail particle (reduced to 4 for performance)
       setTrails((prev) => [
         ...prev.slice(-3),
-        { x: e.clientX, y: e.clientY, id: Date.now() }
+        { x: e.clientX, y: e.clientY, id: `${Date.now()}-${Math.random()}` }
       ])
 
       // Check if hovering over clickable element
